@@ -1,0 +1,207 @@
+.card {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  perspective: 1600px;
+  text-align: left;
+  background: none;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease);
+}
+
+.flipped .inner {
+  transform: rotateY(180deg);
+}
+
+/* ── HOVER (deck thumbnails) ── */
+.card:not(.big) {
+  transition: filter 0.4s var(--ease);
+  will-change: filter;
+}
+
+.card:not(.big):hover {
+  filter: drop-shadow(0 18px 30px rgba(10, 10, 10, 0.26));
+}
+
+.card:not(.big):hover .inner {
+  transform: translateY(-10px) rotateY(-16deg) scale(1.02);
+}
+
+.card:not(.big):active .inner {
+  transform: translateY(-4px) rotateY(-8deg) scale(0.99);
+  transition: transform 0.15s var(--ease);
+}
+
+/* peek hint arrow on the back face */
+.back::after {
+  content: "▸";
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.card:not(.big):hover .back::after {
+  opacity: 0.85;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:not(.big):hover .inner,
+  .card:not(.big):active .inner {
+    transform: none;
+  }
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* ── BACK (color logo face — Figma) ── */
+.back {
+  padding: 14px;
+}
+
+.backLight {
+  border: 1px solid var(--ink);
+}
+
+.line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.line line {
+  stroke: currentColor;
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.bTrust,
+.bControl {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: clamp(13px, 2vw, 22px);
+  line-height: 1;
+}
+
+.bTrust {
+  top: 14px;
+  left: 14px;
+}
+
+.bControl {
+  bottom: 14px;
+  left: 14px;
+}
+
+.bNum {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+/* ── FRONT (situation text — white card, Figma) ── */
+.front {
+  transform: rotateY(180deg);
+  background: var(--paper-pure);
+  border: 1px solid var(--ink);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.fBrand {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.fNum {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.prompt {
+  margin: 12px 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.situation {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: #2a2a2a;
+  flex: 1;
+}
+
+.scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--hair);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ── BIG (overlay reading view) ── */
+.big {
+  width: min(360px, 82vw);
+  aspect-ratio: 5 / 7;
+}
+
+.big .bTrust,
+.big .bControl {
+  font-size: 34px;
+}
+
+.big .front {
+  padding: 26px;
+}
+
+.big .prompt {
+  font-size: 15px;
+  margin: 18px 0 16px;
+}
+
+.big .situation {
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.big .fBrand {
+  font-size: 14px;
+}

@@ -1,0 +1,280 @@
+.main {
+  height: 100svh;
+  overflow: hidden;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 84px var(--gut) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── persona (always on top) ── */
+.persona {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 18px 22px;
+  border: 1px solid var(--ink);
+}
+
+.personaAvatar {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.personaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.personaName {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.personaList {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.personaList div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.personaList dt {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0;
+}
+
+.personaList dd {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+
+/* ── keyword picker ── */
+.picker {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pickKicker {
+  flex: none;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin: 0;
+}
+
+.keywords {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
+}
+
+.keyword {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 26px;
+  text-align: left;
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.kwLight {
+  border-color: var(--ink);
+}
+
+.keyword:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(10, 10, 10, 0.22);
+}
+
+.kwNumeral {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.kwTitle {
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.kwSub {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+}
+
+.kwCount {
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+/* ── deck (situation cards) ── */
+.deck {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.deckHead {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.back {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  transition: color 0.3s var(--ease);
+}
+
+.back:hover {
+  color: var(--ink);
+}
+
+.deckTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+}
+
+.deckNumeral {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.deckTitle {
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.deckDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--hair);
+}
+
+.deckHint {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.cardRow {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: clamp(10px, 1.4vw, 18px);
+  align-content: center;
+}
+
+.cardRow > * {
+  max-height: 100%;
+}
+
+/* ── overlay (reading) ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(3px);
+  animation: fade 0.25s var(--ease);
+}
+
+.overlayCard {
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4));
+}
+
+.overlayClose {
+  position: fixed;
+  top: 22px;
+  right: var(--gut);
+  z-index: 201;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.overlayClose:hover {
+  opacity: 1;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ── responsive ── */
+@media (max-width: 860px) {
+  .keywords {
+    grid-template-columns: 1fr;
+  }
+  .cardRow {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .personaList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .persona {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .cardRow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
