@@ -1,7 +1,7 @@
 :root {
   /* ── 단색(모노크롬) 팔레트 ── */
   --ink: #0a0a0a; /* near-black */
-  --paper: #f5f3f5; /* warm off-white */
+  --paper: #f9f9f9; /* warm off-white */
   --paper-pure: #ffffff;
   --line: #0a0a0a;
   --muted: #6b6b6b;
